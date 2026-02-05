@@ -10,21 +10,23 @@ export class BusinessMetricsCollector {
   private pageLoadTimes: number[] = [];
   private successLoads: number = 0;
   private totalLoads: number = 0;
+  private onReport?: (metrics: BusinessMetrics) => void;
 
-  constructor() {
+  constructor(onReport?: (metrics: BusinessMetrics) => void) {
+    this.onReport = onReport;
     this.startTime = performance.now();
     this.trackPageLoad();
   }
 
   // FMP (First Meaningful Paint) - 需要配合其他库或自定义实现
-  reportFMP(fmp: number): BusinessMetrics {
+  reportFMP(fmp: number): void {
     const metrics: BusinessMetrics = {
       fmp,
       tti: 0,
       secondOpenRate: 0,
       arrivalRate: 0,
     };
-    return metrics;
+    this.onReport?.(metrics);
   }
 
   // TTI (Time to Interactive)
@@ -83,5 +85,10 @@ export class BusinessMetricsCollector {
       secondOpenRate: this.getSecondOpenRate(),
       arrivalRate: this.getArrivalRate(),
     };
+  }
+
+  report(): void {
+    const metrics = this.getMetrics();
+    this.onReport?.(metrics);
   }
 }

@@ -99,11 +99,12 @@ export interface EventData {
 
 // 通用配置
 export interface MetricsConfig {
-  apiEndpoint: string;
+  apiEndpoint?: string;
   appId: string;
   debug?: boolean;
   userId?: string;
   enablePerformance?: boolean;
+  enableBusiness?: boolean;
   enableBehavior?: boolean;
   enableError?: boolean;
   sampleRate?: number;

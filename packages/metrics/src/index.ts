@@ -4,6 +4,7 @@
  */
 
 import type { MetricsConfig, ReportData } from './types';
+import { DEFAULT_CONFIG } from './config/default.config';
 import {
   PerformanceCollector,
   BusinessMetricsCollector,
@@ -46,7 +47,7 @@ export class MetricsSDK {
   private behaviorCollector?: BehaviorCollector;
 
   constructor(config: MetricsConfig) {
-    this.config = config;
+    this.config = { ...DEFAULT_CONFIG, ...config } as MetricsConfig;
     this.sessionId = this.generateSessionId();
     this.traceManager = new TraceManager(config.appId);
     this.init();
@@ -69,7 +70,19 @@ export class MetricsSDK {
     }
 
     // 2. 业务增强指标
-    this.businessMetricsCollector = new BusinessMetricsCollector();
+    if (this.config.enableBusiness !== false) {
+      this.businessMetricsCollector = new BusinessMetricsCollector((metrics) => {
+        this.report({ business: metrics });
+      });
+      // 页面加载完成后自动上报业务指标
+      if (typeof window !== 'undefined') {
+        window.addEventListener('load', () => {
+          setTimeout(() => {
+            this.reportBusinessMetrics();
+          }, 1000);
+        });
+      }
+    }
 
     // 3. 全链路追踪
     this.traceManager = new TraceManager(this.config.appId);

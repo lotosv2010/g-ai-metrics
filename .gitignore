@@ -3,6 +3,7 @@ dist
 build
 .next
 .turbo
+.vite
 .env*.local
 coverage
 *.log

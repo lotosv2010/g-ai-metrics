@@ -1,0 +1,19 @@
+{
+  "name": "@g-ai-metrics/doc",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "rspress dev --port 3020",
+    "build": "rspress build",
+    "preview": "rspress preview --port 3020",
+    "clean": "rm -rf rspress-build"
+  },
+  "dependencies": {
+    "rspress": "^1.25.1",
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "@rspress/plugin-last-updated": "^1.25.1"
+  }
+}

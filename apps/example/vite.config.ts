@@ -8,8 +8,6 @@ export default defineConfig({
     port: 3030,
   },
   resolve: {
-    alias: {
-      '@g-ai-metrics/metrics': path.resolve(__dirname, '../../packages/metrics/src'),
-    },
+    alias: {},
   },
 });

@@ -10,10 +10,10 @@
     "clean": "rm -rf rspress-build"
   },
   "dependencies": {
-    "rspress": "^1.25.1",
+    "rspress": "^1.38.0",
     "react": "^18.3.1"
   },
   "devDependencies": {
-    "@rspress/plugin-last-updated": "^1.25.1"
+    "@rspress/plugin-last-updated": "^1.38.0"
   }
 }

@@ -1,15 +1,15 @@
 {
-  "name": "@g-ai-metrics/metrics",
+  "name": "@g-ai-metrics/shared",
   "version": "1.0.0",
-  "private": true,
-  "type": "module",
+  "description": "共享组件 - UI 组件库、业务组件",
   "main": "./dist/index.js",
-  "module": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
     }
   },
   "files": [
@@ -18,15 +18,17 @@
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "clean": "rm -rf dist"
   },
-  "dependencies": {
-    "rrweb": "2.0.0-alpha.20"
-  },
+  "keywords": [
+    "metrics",
+    "shared",
+    "components"
+  ],
+  "author": "",
+  "license": "MIT",
   "devDependencies": {
-    "@types/node": "^22.10.2",
+    "react": "^18.3.1",
     "@types/react": "^18.3.18",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2",
